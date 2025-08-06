@@ -1,0 +1,14 @@
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+<service
+    android:name="de.mintware.barcode_scan.BarcodeScanActivity"
+    android:exported="false" />
+
+<service
+    android:name="com.pauldemarco.flutter_blue_plus.FlutterBluePlusBackgroundService"
+    android:enabled="true"
+    android:exported="false" />
