@@ -1,5 +1,3 @@
-// File: lib/auth/caregiver_registration_page.dart
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
@@ -14,11 +12,13 @@ class CaregiverRegistrationPage extends StatefulWidget {
       _CaregiverRegistrationPageState();
 }
 
-class _CaregiverRegistrationPageState extends State<CaregiverRegistrationPage> {
+class _CaregiverRegistrationPageState
+    extends State<CaregiverRegistrationPage> {
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+  TextEditingController();
   final TextEditingController nameController = TextEditingController();
 
   @override
@@ -77,64 +77,55 @@ class _CaregiverRegistrationPageState extends State<CaregiverRegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white, // ✅ Make the whole screen white
       appBar: AppBar(
-        title: const Text('Caregiver Registration', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black,
+        title: const Text('Caregiver Registration',
+            style: TextStyle(color: Colors.black)),
+        backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Center(
+      body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Container(
-            width: screenWidth < 400 ? double.infinity : 320,
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // LOGO
-                Image.asset(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: Image.asset(
                   'assets/images/img.png',
                   height: 80,
                 ),
-                const SizedBox(height: 24),
-
-                _buildInputField("Full Name", nameController),
-                _buildInputField("Email", emailController),
-                _buildInputField("Password", passwordController, isObscure: true),
-                _buildInputField("Confirm Password", confirmPasswordController, isObscure: true),
-
-                const SizedBox(height: 30),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _submitForm,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[800],
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              const SizedBox(height: 24),
+              _buildInputField("Full Name", nameController),
+              _buildInputField("Email", emailController),
+              _buildInputField("Password", passwordController, isObscure: true),
+              _buildInputField("Confirm Password", confirmPasswordController,
+                  isObscure: true),
+              const SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[800],
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Text(
-                      "REGISTER",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  child: const Text(
+                    "REGISTER",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -149,8 +140,7 @@ class _CaregiverRegistrationPageState extends State<CaregiverRegistrationPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(label,
-              style:
-              const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           const SizedBox(height: 6),
           TextField(
             controller: controller,
@@ -162,8 +152,8 @@ class _CaregiverRegistrationPageState extends State<CaregiverRegistrationPage> {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
               ),
-              contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 12, vertical: 12),
+              contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             ),
           ),
         ],
